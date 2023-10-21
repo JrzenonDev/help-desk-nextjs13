@@ -1,6 +1,10 @@
 async function getTickets() {
   try {
-    const res = await fetch("http://localhost:4000/tickets");
+    const res = await fetch("http://localhost:4000/tickets", {
+      next: {
+        revalidate: 60,
+      },
+    });
     return res.json();
   } catch (err) {
     console.log("tickets not found", err);
